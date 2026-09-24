@@ -18,7 +18,7 @@ permissions:  # added using https://github.com/step-security/secure-workflows
 jobs:
   update_tag:
     name: Update the rc tag to ${{ github.event.inputs.COMMIT_SHA }} commit
-    runs-on: ubuntu-latest
+    runs-on: cx-public-ubuntu-x64
     permissions:
       contents: write
     steps:
@@ -37,13 +37,13 @@ jobs:
         rc: true
 
     - name: Canary test
-      uses: docker://ghcr.io/step-security/integration-test/int:latest
+      uses: docker://ghcr.io/step-security/integration-test/int:latest@sha256:6fd8409080135d25b5b2a3c1b82256c49c989eac5ea37860c386a21d342baf73
       env:
         PAT: ${{ secrets.PAT }}
         canary: true
 
     - name: Canary TLS test
-      uses: docker://ghcr.io/step-security/integration-test/int:latest
+      uses: docker://ghcr.io/step-security/integration-test/int:latest@sha256:6fd8409080135d25b5b2a3c1b82256c49c989eac5ea37860c386a21d342baf73
       env:
         PAT: ${{ secrets.PAT }}
         canary-tls: true
