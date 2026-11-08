@@ -21,7 +21,7 @@ jobs:
     # Remember to configure the releaseNewActionVersion environment with required approvers in the repository settings
     environment:
       name: releaseNewActionVersion
-    runs-on: ubuntu-latest
+    runs-on: cx-public-ubuntu-x64
     permissions:
       contents: write
     steps:
@@ -40,7 +40,7 @@ jobs:
         rc: true
 
     - name: Canary test
-      uses: docker://ghcr.io/step-security/integration-test/int:latest
+      uses: docker://ghcr.io/step-security/integration-test/int:latest@sha256:9fa83dcb7935b2cbba1ba609f7e7d6b07388aecc9b654df6b7e919ea760c9c85
       env:
         PAT: ${{ secrets.PAT }}
         canary: true
